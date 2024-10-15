@@ -1,5 +1,11 @@
+import { AddTodo } from "./components/add-todo";
+import { TodoList } from "./components/todo-list";
+
 export function App() {
   return (
-    <h1>Hello world</h1>
+    <div>
+      <TodoList />
+      <AddTodo />
+    </div>
   )
 }
