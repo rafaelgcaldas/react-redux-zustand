@@ -1,7 +1,21 @@
-import { useCurrentLesson } from "../store/slices/player"
+import { useAppSelector } from "../store"
 
 export function Header() {
-  const { currentModule, currentLesson } = useCurrentLesson()
+  const { currentModule, currentLesson } = useAppSelector(state => {
+    const { currentModuleIndex, currentLessonIndex} = state.player
+
+    const currentModule = state.player.course?.modules[currentModuleIndex]
+    const currentLesson = currentModule?.lessons[currentLessonIndex]
+
+    return {
+      currentModule,
+      currentLesson
+    }
+  })
+
+  if (!currentModule || !currentLesson) {
+    return null
+  }
 
   return (
     <div className="flex flex-col gap-1">
